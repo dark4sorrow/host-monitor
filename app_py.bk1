@@ -1,0 +1,279 @@
+import json
+import datetime
+import io
+import pandas as pd
+from ping3 import ping
+from boxsdk import JWTAuth, Client
+from flask import Flask, make_response, jsonify, render_template_string
+import threading
+import time
+import os
+import sys
+
+# --- APPLICATION SETUP ---
+app = Flask(__name__)
+
+# --- CONFIGURATION ---
+OUTPUT_JSON_FILE = '/output/galactic_audit.json' 
+BOX_FILE_ID = '2026233839344'
+BOX_CONFIG_PATH = '/app/config.json'
+
+# Global flags
+is_scanning = False
+scan_lock = threading.Lock()
+
+# --- HTML TEMPLATE ---
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Host Monitor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #1a1a1a; color: #e0e0e0; padding-top: 20px; }
+        .container-fluid { background: #2d2d2d; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); max-width: 95%; }
+        table.dataTable tbody tr { background-color: #2d2d2d; color: #e0e0e0; }
+        table.dataTable tbody tr:hover { background-color: #383838; }
+        .table-striped>tbody>tr:nth-of-type(odd)>* { box-shadow: none; color: #e0e0e0; background-color: #333; }
+        .table { color: #e0e0e0; border-color: #404040; }
+        .badge-online { background-color: #198754; color: white; padding: 5px 10px; border-radius: 4px; }
+        .badge-offline { background-color: #dc3545; color: white; padding: 5px 10px; border-radius: 4px; }
+        .header_row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .meta-info { text-align: right; font-size: 0.9em; color: #aaa; }
+        .btn-galactic { background-color: #0d6efd; border: none; color: white; font-weight: 500; }
+        .btn-galactic:disabled { background-color: #555; cursor: not-allowed; }
+        .status-msg { font-size: 0.8rem; margin-right: 10px; color: #ffc107; }
+        
+        /* Subtitle & Filename Styles */
+        .subtitle { color: #b0b0b0; font-size: 0.95rem; margin-top: 4px; display: flex; align-items: center; gap: 8px; }
+        .filename-display { color: #0dcaf0; font-weight: bold; font-family: monospace; }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header_row">
+        <div>
+            <h2 class="mb-0">🛸 Galactic Host Monitor</h2>
+            <div class="subtitle">
+                <span>Source-of-Truth Audit (Manual Scan Only)</span>
+                <span id="source-filename" class="filename-display">(Filename Pending Scan...)</span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span id="scan-status" class="status-msg"></span>
+            <button id="rescanBtn" class="btn btn-galactic btn-sm">Rescan Source-of-Truth</button>
+            <div class="meta-info">
+                <div id="host-count">Hosts: 0</div>
+                <div id="last-updated">Loading...</div>
+            </div>
+        </div>
+    </div>
+    <table id="hostTable" class="table table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>OS</th>
+                <th>EDR Ver</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var table = $('#hostTable').DataTable({
+            ajax: {
+                url: '/api',
+                dataSrc: function(json) {
+                    if(json.last_updated) $('#last-updated').text('Last Scan: ' + json.last_updated);
+                    if(json.hosts) $('#host-count').text('Hosts: ' + json.hosts.length);
+                    
+                    // Update Filename Display
+                    if(json.filename) {
+                        $('#source-filename').text('[ ' + json.filename + ' ]');
+                    } else {
+                        // If json exists but filename is missing (legacy file), show waiting message
+                        $('#source-filename').text('(Pending Rescan...)');
+                    }
+                    return json.hosts;
+                }
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'hostname' },
+                { data: 'ip' },
+                { data: 'os', defaultContent: "Unknown" },
+                { data: 'edr', defaultContent: "Unknown" },
+                { data: 'owner', defaultContent: "Unknown" },
+                { 
+                    data: 'status',
+                    render: function(data) {
+                        return data === 'online' ? '<span class="badge-online">Online</span>' : '<span class="badge-offline">OFFLINE</span>';
+                    }
+                }
+            ],
+            pageLength: 25,
+            order: [[6, 'asc']]
+        });
+        $('#rescanBtn').click(function() {
+            var btn = $(this);
+            btn.prop('disabled', true).text('Scanning...');
+            $('#scan-status').text('');
+            fetch('/rescan').then(r => r.json()).then(d => checkUpdateLoop(btn)).catch(e => btn.prop('disabled', false));
+        });
+        function checkUpdateLoop(btn) {
+            var checks = 0;
+            var interval = setInterval(function() {
+                table.ajax.reload(null, false);
+                checks++;
+                if (checks > 15) { clearInterval(interval); btn.prop('disabled', false).text('Rescan Source-of-Truth'); }
+            }, 3000);
+        }
+    });
+</script>
+</body>
+</html>
+"""
+
+# --- BACKEND LOGIC ---
+def run_scan(): 
+    global is_scanning
+    if not scan_lock.acquire(blocking=False): return
+
+    try:
+        is_scanning = True
+        print(f"--- Starting Scan: {datetime.datetime.now()} ---")
+        
+        auth = JWTAuth.from_settings_file(BOX_CONFIG_PATH)
+        client = Client(auth)
+        
+        # 1. GET FILE METADATA (Name)
+        # This fetches the official filename from Box
+        box_file = client.file(BOX_FILE_ID).get()
+        current_filename = box_file.name
+        print(f"DEBUG: Found filename: {current_filename}")
+        
+        # 2. GET CONTENT
+        file_content = client.file(BOX_FILE_ID).content()
+        df = pd.read_excel(io.BytesIO(file_content), engine='openpyxl')
+        
+        # Header Hunting
+        def get_clean_row_as_string(row_values):
+            return str([str(x).lower().strip() for x in row_values])
+
+        header_row_index = -1
+        if 'ip address' in get_clean_row_as_string(df.columns):
+            header_row_index = -1 
+        else:
+            for i, row in df.head(10).iterrows():
+                row_str = get_clean_row_as_string(row.values)
+                if 'ip address' in row_str and 'name' in row_str:
+                    header_row_index = i
+                    break
+        
+        if header_row_index != -1:
+            df.columns = df.iloc[header_row_index] 
+            df = df.iloc[header_row_index+1:] 
+            df.reset_index(drop=True, inplace=True)
+        
+        # Clean Headers
+        clean_headers = []
+        for col in df.columns:
+            clean_headers.append(str(col).replace('\n', ' ').strip().lower())
+        df.columns = clean_headers
+        
+        # Direct Mapping
+        col_map = {}
+        for col in clean_headers:
+            if 'ip address' in col:         col_map['ip'] = col
+            elif 'name' == col:             col_map['name'] = col
+            elif 'operating' in col or 'os' == col: col_map['os'] = col
+            elif 'edr' in col:              col_map['edr'] = col
+            elif 'owner' in col:            col_map['owner'] = col
+            
+        # Safety Check
+        if 'ip' not in col_map or 'name' not in col_map:
+            print(f"❌ CRITICAL ERROR: Missing IP or Name columns. Found: {col_map.keys()}")
+            return 
+
+        # Extract Data
+        results = []
+        valid_row_count = 0 
+
+        for index, row in df.iterrows():
+            name = str(row[col_map['name']]) if 'name' in col_map else 'Unknown'
+            ip = str(row[col_map['ip']]) if 'ip' in col_map else '0.0.0.0'
+            os_name = str(row[col_map['os']]) if 'os' in col_map else 'Unknown'
+            edr_ver = str(row[col_map['edr']]) if 'edr' in col_map else 'Unknown'
+            owner = str(row[col_map['owner']]) if 'owner' in col_map else 'Unknown'
+            
+            if os_name.lower() == 'nan' or not os_name.strip(): os_name = "Unknown"
+            if edr_ver.lower() == 'nan' or not edr_ver.strip(): edr_ver = "Unknown"
+            if owner.lower() == 'nan' or not owner.strip(): owner = "Unknown"
+
+            if ip.lower() == 'nan' or ip == '0.0.0.0': continue
+            
+            if os_name != "Unknown" or owner != "Unknown" or edr_ver != "Unknown":
+                valid_row_count += 1
+
+            try:
+                is_online = ping(ip, timeout=0.5) is not False
+            except:
+                is_online = False
+                
+            status = "online" if is_online else "offline"
+            results.append({
+                "id": index+1, "hostname": name, "ip": ip, 
+                "os": os_name, "edr": edr_ver, "owner": owner, 
+                "status": status
+            })
+
+        # Integrity Lock
+        if len(results) > 0 and valid_row_count == 0:
+            print(f"❌ DATA INTEGRITY FAIL: Scanned {len(results)} hosts but found 0 valid metadata rows. Aborting save.")
+            return 
+
+        # Save Output with FILENAME
+        data = {
+            "last_updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "filename": current_filename,
+            "hosts": results
+        }
+        with open(OUTPUT_JSON_FILE, 'w') as f:
+            json.dump(data, f, indent=4)
+        print("✅ Data saved successfully.")
+
+    except Exception as e:
+        print(f"❌ Error in scan thread: {e}")
+    finally:
+        is_scanning = False
+        scan_lock.release()
+
+# --- ROUTES ---
+@app.route('/')
+def dashboard(): return render_template_string(HTML_TEMPLATE)
+
+@app.route('/api')
+def get_data():
+    try:
+        with open(OUTPUT_JSON_FILE, 'r') as f: return make_response(f.read(), 200, {'Content-Type': 'application/json'})
+    except: return jsonify({"last_updated": "Never", "hosts": []})
+
+@app.route('/rescan')
+def manual_rescan():
+    if is_scanning: return jsonify({"status": "busy"})
+    threading.Thread(target=run_scan).start()
+    return jsonify({"status": "started"})
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)

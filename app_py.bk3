@@ -1,0 +1,239 @@
+import json
+import datetime
+import io
+import pandas as pd
+from ping3 import ping
+from boxsdk import JWTAuth, Client
+from flask import Flask, make_response, jsonify, render_template, request
+import threading
+import time
+import os
+import sys
+
+# --- APPLICATION SETUP ---
+app = Flask(__name__)
+
+# --- CONFIGURATION ---
+OUTPUT_JSON_FILE = 'output/hosts_data.json' 
+DEFAULT_BOX_FILE_ID = '2026233839344'
+BOX_CONFIG_PATH = '/app/config.json'
+BOX_FOLDER_URL = 'https://nic.box.com/s/23214be3hx0czbw1mcgjuw2g1zvatca0'
+
+# Global flags & State
+is_scanning = False
+scan_lock = threading.Lock()
+current_file_id = DEFAULT_BOX_FILE_ID
+current_filename = "Unknown" 
+
+# --- HELPERS ---
+def get_box_client():
+    auth = JWTAuth.from_settings_file(BOX_CONFIG_PATH)
+    return Client(auth)
+
+def parse_excel_content(file_content):
+    """Parses Excel content and returns DataFrame and Column Map."""
+    df = pd.read_excel(io.BytesIO(file_content), engine='openpyxl')
+    
+    # Header Hunting
+    def get_clean_row_as_string(row_values):
+        return str([str(x).lower().strip() for x in row_values])
+
+    header_row_index = -1
+    if 'ip address' in get_clean_row_as_string(df.columns):
+        header_row_index = -1 
+    else:
+        for i, row in df.head(10).iterrows():
+            row_str = get_clean_row_as_string(row.values)
+            if 'ip address' in row_str and 'name' in row_str:
+                header_row_index = i
+                break
+    
+    if header_row_index != -1:
+        df.columns = df.iloc[header_row_index] 
+        df = df.iloc[header_row_index+1:] 
+        df.reset_index(drop=True, inplace=True)
+    
+    # Clean Headers
+    clean_headers = []
+    for col in df.columns:
+        clean_headers.append(str(col).replace('\n', ' ').strip().lower())
+    df.columns = clean_headers
+    
+    # Direct Mapping
+    col_map = {}
+    for col in clean_headers:
+        if 'ip address' in col:         col_map['ip'] = col
+        elif 'name' == col:             col_map['name'] = col
+        elif 'operating' in col or 'os' == col: col_map['os'] = col
+        elif 'edr' in col:              col_map['edr'] = col
+        elif 'owner' in col:            col_map['owner'] = col
+        
+    return df, col_map
+
+def get_available_files():
+    """List .xlsx files in the same folder as the default file."""
+    try:
+        client = get_box_client()
+        default_file = client.file(DEFAULT_BOX_FILE_ID).get()
+        parent_folder = default_file.parent
+        
+        if not parent_folder:
+            return []
+
+        items = client.folder(parent_folder.id).get_items()
+        files = []
+        for item in items:
+            if item.type == 'file' and item.name.endswith('.xlsx'):
+                files.append({'name': item.name, 'id': item.id})
+        
+        files.sort(key=lambda x: x['name'])
+        return files
+    except Exception as e:
+        print(f"Error listing files: {e}")
+        return []
+
+# --- BACKEND LOGIC ---
+def run_scan(target_file_id=None): 
+    global is_scanning, current_file_id, current_filename
+    if not scan_lock.acquire(blocking=False): return
+
+    try:
+        is_scanning = True
+        print(f"--- Starting Scan: {datetime.datetime.now()} ---")
+        
+        scan_file_id = target_file_id if target_file_id else current_file_id
+        
+        client = get_box_client()
+        
+        # 1. GET FILE METADATA
+        box_file = client.file(scan_file_id).get()
+        scan_filename = box_file.name
+        
+        current_file_id = scan_file_id
+        current_filename = scan_filename
+        
+        # 2. GET & PARSE CONTENT
+        file_content = client.file(scan_file_id).content()
+        df, col_map = parse_excel_content(file_content)
+        
+        # Safety Check
+        if 'ip' not in col_map or 'name' not in col_map:
+            print(f"❌ CRITICAL ERROR: Missing IP or Name columns. Found: {col_map.keys()}")
+            return 
+
+        # Extract Data
+        results = []
+        valid_row_count = 0 
+
+        for index, row in df.iterrows():
+            name = str(row[col_map['name']]) if 'name' in col_map else 'Unknown'
+            ip = str(row[col_map['ip']]) if 'ip' in col_map else '0.0.0.0'
+            os_name = str(row[col_map['os']]) if 'os' in col_map else 'Unknown'
+            edr_ver = str(row[col_map['edr']]) if 'edr' in col_map else 'Unknown'
+            owner = str(row[col_map['owner']]) if 'owner' in col_map else 'Unknown'
+            
+            if os_name.lower() == 'nan' or not os_name.strip(): os_name = "Unknown"
+            if edr_ver.lower() == 'nan' or not edr_ver.strip(): edr_ver = "Unknown"
+            if owner.lower() == 'nan' or not owner.strip(): owner = "Unknown"
+
+            # UPDATED: Allow 'boneyard' to pass through even if it's in the IP column
+            if ip.lower() == 'nan' or ip == '0.0.0.0': 
+                continue
+            
+            if os_name != "Unknown" or owner != "Unknown" or edr_ver != "Unknown":
+                valid_row_count += 1
+
+            # Only attempt ping if it looks like a real IP/Hostname
+            is_online = False
+            if 'boneyard' not in ip.lower() and 'boneyard' not in edr_ver.lower():
+                try:
+                    is_online = ping(ip, timeout=0.5) is not False
+                except:
+                    is_online = False
+                
+            status = "online" if is_online else "offline"
+            results.append({
+                "id": index+1, "hostname": name, "ip": ip, 
+                "os": os_name, "edr": edr_ver, "owner": owner, 
+                "status": status
+            })
+
+        if len(results) > 0 and valid_row_count == 0:
+            print(f"❌ DATA INTEGRITY FAIL: Scanned {len(results)} hosts but found 0 valid metadata rows. Aborting save.")
+            return 
+
+        data = {
+            "last_updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "filename": scan_filename,
+            "file_id": scan_file_id,
+            "hosts": results
+        }
+        with open(OUTPUT_JSON_FILE, 'w') as f:
+            json.dump(data, f, indent=4)
+        print("✅ Data saved successfully.")
+
+    except Exception as e:
+        print(f"❌ Error in scan thread: {e}")
+    finally:
+        is_scanning = False
+        scan_lock.release()
+
+# --- ROUTES ---
+@app.route('/')
+def dashboard(): 
+    return render_template('index.html')
+
+@app.route('/api')
+def get_data():
+    try:
+        with open(OUTPUT_JSON_FILE, 'r') as f: 
+            return make_response(f.read(), 200, {'Content-Type': 'application/json'})
+    except: 
+        return jsonify({"last_updated": "Never", "hosts": [], "file_id": current_file_id})
+
+@app.route('/api/files')
+def list_files():
+    files = get_available_files()
+    return jsonify(files)
+
+@app.route('/api/boneyard')
+def get_boneyard():
+    try:
+        client = get_box_client()
+        default_file = client.file(DEFAULT_BOX_FILE_ID).get()
+        parent = default_file.parent
+        if not parent: return jsonify({"error": "Parent folder not found"})
+        
+        items = client.folder(parent.id).get_items()
+        boneyard_id = None
+        for item in items:
+            if item.type == 'file' and 'boneyard' in item.name.lower() and item.name.endswith('.xlsx'):
+                boneyard_id = item.id
+                break
+        
+        if not boneyard_id: return jsonify({"error": "No 'Boneyard' file found"})
+        
+        content = client.file(boneyard_id).content()
+        df, col_map = parse_excel_content(content)
+        
+        results = []
+        for index, row in df.iterrows():
+            name = str(row[col_map['name']]) if 'name' in col_map else 'Unknown'
+            ip = str(row[col_map['ip']]) if 'ip' in col_map else 'Unknown'
+            if name != 'Unknown' and name.lower() != 'nan':
+                results.append({"hostname": name, "ip": ip})
+                
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+@app.route('/rescan')
+def manual_rescan():
+    if is_scanning: return jsonify({"status": "busy"})
+    
+    file_id = request.args.get('file_id')
+    threading.Thread(target=run_scan, args=(file_id,)).start()
+    return jsonify({"status": "started"})
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)

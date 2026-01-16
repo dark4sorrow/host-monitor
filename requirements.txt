@@ -1,0 +1,17 @@
+
+flask
+
+requests
+
+boxsdk[jwt]<10.0.0
+
+pandas
+
+openpyxl
+
+ping3
+
+schedule
+
+gunicorn
+

@@ -1,0 +1,202 @@
+import json
+import datetime
+import io 
+import pandas as pd
+from ping3 import ping
+from boxsdk import JWTAuth, Client
+from flask import Flask, make_response, jsonify, render_template_string
+import threading
+import schedule 
+import time 
+
+# --- APPLICATION SETUP ---
+app = Flask(__name__) 
+
+# --- DOCKER CONFIGURATION ---
+BOX_FILE_ID = '2026233839344'
+BOX_CONFIG_PATH = '/app/config.json'
+OUTPUT_JSON_FILE = '/output/hosts_data.json' 
+
+# --- HTML TEMPLATE ---
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Host Monitor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding-top: 20px; }
+        .container-fluid { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 95%; }
+        .badge-online { background-color: #d1e7dd; color: #0f5132; padding: 5px 10px; border-radius: 4px; }
+        .badge-offline { background-color: #f8d7da; color: #842029; padding: 5px 10px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">🛸 Galactic Host Monitor</h2>
+        <small class="text-muted" id="last-updated">Loading...</small>
+    </div>
+
+    <table id="hostTable" class="table table-striped table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>OS</th>
+                <th>EDR Ver</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#hostTable').DataTable({
+            ajax: {
+                url: '/api',
+                dataSrc: 'hosts'
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'hostname' },
+                { data: 'ip' },
+                { data: 'os', defaultContent: "Unknown" },
+                { data: 'edr', defaultContent: "Unknown" },
+                { data: 'owner', defaultContent: "Unknown" },
+                { 
+                    data: 'status',
+                    render: function(data) {
+                        return data === 'online' ? '<span class="badge-online">Online</span>' : '<span class="badge-offline">OFFLINE</span>';
+                    }
+                }
+            ],
+            pageLength: 25,
+            order: [[6, 'asc']]
+        });
+
+        fetch('/api')
+            .then(response => response.json())
+            .then(data => {
+                if(data.last_updated) {
+                    document.getElementById('last-updated').textContent = 'Last Scan: ' + data.last_updated;
+                }
+            });
+    });
+</script>
+</body>
+</html>
+"""
+
+# --- SCANNING LOGIC ---
+def run_scan(): 
+    print(f"--- Starting Container Scan: {datetime.datetime.now()} ---")
+    results = [] 
+    try:
+        auth = JWTAuth.from_settings_file(BOX_CONFIG_PATH)
+        client = Client(auth)
+        file_content = client.file(BOX_FILE_ID).content()
+        df = pd.read_excel(io.BytesIO(file_content)) 
+        
+        # --- SMART COLUMN MAPPING (Fuzzy Match) ---
+        # This renames the columns found in the Excel file to standard keys
+        # so we can find them even if there are spaces or case differences.
+        
+        raw_columns = df.columns.tolist()
+        print(f"DEBUG: Raw Excel Columns Found: {raw_columns}") # Check logs if this fails
+
+        rename_map = {}
+        for col in raw_columns:
+            clean_col = col.strip().lower() # Lowercase and remove spaces
+            
+            if 'ip address' in clean_col:   rename_map[col] = 'target_ip'
+            elif 'name' == clean_col:       rename_map[col] = 'target_name'
+            elif 'operating' in clean_col:  rename_map[col] = 'target_os'
+            elif 'edr' in clean_col:        rename_map[col] = 'target_edr'
+            elif 'owner' in clean_col:      rename_map[col] = 'target_owner'
+
+        # Apply the renaming
+        df.rename(columns=rename_map, inplace=True)
+
+        for index, row in df.iterrows():
+            # Now we use the standardized keys ('target_xxx')
+            name = str(row.get('target_name', 'Unknown'))
+            ip = str(row.get('target_ip', '0.0.0.0'))
+            os_name = str(row.get('target_os', 'Unknown'))
+            edr_ver = str(row.get('target_edr', 'Unknown'))
+            owner = str(row.get('target_owner', 'Unknown'))
+            
+            # Formatting Cleanup
+            if os_name.lower() == 'nan': os_name = "Unknown"
+            if edr_ver.lower() == 'nan': edr_ver = "Unknown"
+            if owner.lower() == 'nan': owner = "Unknown"
+
+            if ip.lower() == 'nan' or ip == '0.0.0.0': continue
+            
+            try:
+                is_online = ping(ip, timeout=0.5) is not False
+            except:
+                is_online = False
+                
+            status = "online" if is_online else "offline"
+            results.append({
+                "id": index+1, "hostname": name, "ip": ip, 
+                "os": os_name, "edr": edr_ver, "owner": owner, 
+                "status": status
+            })
+
+        data = {"last_updated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), "hosts": results}
+        with open(OUTPUT_JSON_FILE, 'w') as f:
+            json.dump(data, f, indent=4)
+        print("✅ Data saved.")
+
+    except Exception as e:
+        print(f"❌ Error in scan thread: {e}")
+
+# --- SCHEDULER ---
+def schedule_loop():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+def start_background_tasks():
+    threading.Thread(target=run_scan).start()
+    schedule.every(5).minutes.do(run_scan)
+    t = threading.Thread(target=schedule_loop)
+    t.daemon = True
+    t.start()
+    print("🌐 Background tasks initialized.")
+
+# --- WEB ROUTES ---
+@app.route('/')
+def dashboard():
+    return render_template_string(HTML_TEMPLATE)
+
+@app.route('/api')
+def get_data():
+    try:
+        with open(OUTPUT_JSON_FILE, 'r') as f:
+            response = make_response(f.read())
+            response.mimetype = 'application/json'
+            return response
+    except FileNotFoundError:
+        return jsonify({"last_updated": "Never", "hosts": []})
+
+# --- GUNICORN ENTRY POINT ---
+start_background_tasks()
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)

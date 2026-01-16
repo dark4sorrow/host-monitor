@@ -1,0 +1,3050 @@
+{
+    "last_updated": "2026-01-16 16:59:05",
+    "file_id": "2026233839344",
+    "filename": "Source-of-Truth-Audit-#2-Nov2025.xlsx",
+    "hosts": [
+        {
+            "id": 1,
+            "hostname": "2019TEST",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 2,
+            "hostname": "AADC",
+            "ip": "10.102.1.13",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 3,
+            "hostname": "AADSYNC",
+            "ip": "10.1.32.176",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 4,
+            "hostname": "AAFS",
+            "ip": "10.102.1.22",
+            "os": "Windows Server 2016 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 5,
+            "hostname": "AAOAHV",
+            "ip": "10.102.1.11",
+            "os": "Windows Server 2012 R2",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 6,
+            "hostname": "ADAUDIT",
+            "ip": "10.1.32.116",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 7,
+            "hostname": "ADC01",
+            "ip": "10.10.10.61",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 8,
+            "hostname": "ADC02",
+            "ip": "10.10.10.62",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 9,
+            "hostname": "ADFS3",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 10,
+            "hostname": "ADFS4",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 11,
+            "hostname": "ADFSPR3",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 12,
+            "hostname": "ADFSPR4",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 13,
+            "hostname": "ADFSSQL5",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 14,
+            "hostname": "ADGW",
+            "ip": "10.1.32.163",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Kami Jenks",
+            "status": "online"
+        },
+        {
+            "id": 15,
+            "hostname": "ADGW2",
+            "ip": "10.1.32.162",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Kami Jenks",
+            "status": "online"
+        },
+        {
+            "id": 16,
+            "hostname": "ADMANAGE",
+            "ip": "10.1.32.117",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 17,
+            "hostname": "ADMANAGER",
+            "ip": "10.1.32.29",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 18,
+            "hostname": "AIXBACKUP",
+            "ip": "10.1.32.19",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 19,
+            "hostname": "APPLICATIONS",
+            "ip": "10.1.32.201",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Helpdesk",
+            "status": "online"
+        },
+        {
+            "id": 20,
+            "hostname": "AUVIK-NICNET",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 21,
+            "hostname": "AVISO",
+            "ip": "10.1.32.35",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Tammy Robertson",
+            "status": "online"
+        },
+        {
+            "id": 22,
+            "hostname": "BOMGAR",
+            "ip": "10.10.10.10",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Helpdesk",
+            "status": "online"
+        },
+        {
+            "id": 23,
+            "hostname": "BR1",
+            "ip": "10.1.32.180",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Bill Richards",
+            "status": "online"
+        },
+        {
+            "id": 24,
+            "hostname": "CAMPUSWEB",
+            "ip": "10.1.32.52",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Kami Jenks",
+            "status": "online"
+        },
+        {
+            "id": 25,
+            "hostname": "CISCO",
+            "ip": "10.11.0.100",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 26,
+            "hostname": "CLCONNECT",
+            "ip": "10.1.32.37",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 27,
+            "hostname": "COLLUI",
+            "ip": "10.1.32.74",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Amy Mayer",
+            "status": "online"
+        },
+        {
+            "id": 28,
+            "hostname": "CONTRACTOR",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 29,
+            "hostname": "COURSECONTENT",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 34,
+            "hostname": "CROA1",
+            "ip": "10.1.32.84",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 35,
+            "hostname": "CROAPP",
+            "ip": "10.1.32.135",
+            "os": "Windows Server 2012 R2 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 36,
+            "hostname": "CROASQL1",
+            "ip": "10.1.32.137",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Andreas Burger, Tammy Robertson",
+            "status": "online"
+        },
+        {
+            "id": 37,
+            "hostname": "CROASQL2",
+            "ip": "10.1.32.138",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Andreas Burger, Tammy Robertson",
+            "status": "online"
+        },
+        {
+            "id": 38,
+            "hostname": "CROSQL",
+            "ip": "10.1.32.136",
+            "os": "Windows Server 2012 R2 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Andreas Burger, Tammy Robertson",
+            "status": "online"
+        },
+        {
+            "id": 39,
+            "hostname": "CTEDC",
+            "ip": "10.9.1.11",
+            "os": "Shutdown",
+            "edr": "25.1.3.334",
+            "owner": "Shutdown",
+            "status": "online"
+        },
+        {
+            "id": 40,
+            "hostname": "CTE-PROD1.VS.NIC.EDU",
+            "ip": "10.9.0.102",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 41,
+            "hostname": "CTXADMIN",
+            "ip": "10.1.5.55",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 42,
+            "hostname": "DCROSQL",
+            "ip": "10.1.52.26",
+            "os": "Windows Server 2012 R2 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 43,
+            "hostname": "DDI-1",
+            "ip": "10.0.10.6",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 44,
+            "hostname": "DDI-2",
+            "ip": "10.0.10.14",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 45,
+            "hostname": "DENNIS Win10",
+            "ip": "10.1.5.204",
+            "os": "Windows 10",
+            "edr": "Unknown",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 46,
+            "hostname": "DENNIS WIN10",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 47,
+            "hostname": "DFS1",
+            "ip": "10.1.10.31",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 48,
+            "hostname": "DFS2",
+            "ip": "10.1.10.32",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 49,
+            "hostname": "DHCP1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Deprecated",
+            "status": "offline"
+        },
+        {
+            "id": 50,
+            "hostname": "DOLTP2",
+            "ip": "10.1.52.86",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 51,
+            "hostname": "DUOPROXY",
+            "ip": "10.1.32.104",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 52,
+            "hostname": "DUOPROXY2",
+            "ip": "10.1.32.105",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 53,
+            "hostname": "EDNETICS",
+            "ip": "10.1.32.204",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 54,
+            "hostname": "ELEARNASR",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 55,
+            "hostname": "ETHOSCON",
+            "ip": "10.1.32.217",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 56,
+            "hostname": "EZPROXY1",
+            "ip": "10.1.32.13",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 57,
+            "hostname": "FISPRV2",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Shutdown",
+            "status": "offline"
+        },
+        {
+            "id": 58,
+            "hostname": "FTPSEC",
+            "ip": "10.1.32.21",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 59,
+            "hostname": "FUSION",
+            "ip": "10.1.32.50",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Rec Center",
+            "status": "online"
+        },
+        {
+            "id": 60,
+            "hostname": "FUSIONAPP",
+            "ip": "10.1.32.49",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P, Rec Center",
+            "status": "online"
+        },
+        {
+            "id": 61,
+            "hostname": "GALACTICBACON",
+            "ip": "10.1.5.36",
+            "os": "Linux",
+            "edr": "Unknown",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 62,
+            "hostname": "GALACTICSAUSAGE",
+            "ip": "10.1.5.34",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 63,
+            "hostname": "GNS3_VM_1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 64,
+            "hostname": "GVE",
+            "ip": "10.1.32.202",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Helpdesk",
+            "status": "online"
+        },
+        {
+            "id": 65,
+            "hostname": "HSHCAPP",
+            "ip": "10.101.1.12",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 66,
+            "hostname": "HSHCDC",
+            "ip": "10.101.1.11",
+            "os": "Windows Server 2008 R2",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 67,
+            "hostname": "HVAC",
+            "ip": "10.1.32.16",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Facilities",
+            "status": "online"
+        },
+        {
+            "id": 68,
+            "hostname": "HVACEV2",
+            "ip": "10.1.32.18",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 69,
+            "hostname": "HZN-CNX-01",
+            "ip": "10.1.32.30",
+            "os": "Windows Server 2022 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 70,
+            "hostname": "HZN-CNX-02",
+            "ip": "10.1.32.31",
+            "os": "Windows Server 2022 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 71,
+            "hostname": "HZN-UAG-01",
+            "ip": "10.10.10.132",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 72,
+            "hostname": "HZN-UAG-02",
+            "ip": "10.10.10.133",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 73,
+            "hostname": "IDM1",
+            "ip": "10.1.10.111",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 74,
+            "hostname": "IDM2",
+            "ip": "10.1.10.112",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 76,
+            "hostname": "INFOPATH",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Kami Jenks",
+            "status": "offline"
+        },
+        {
+            "id": 77,
+            "hostname": "INFOPATHTEST",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Kami Jenks",
+            "status": "offline"
+        },
+        {
+            "id": 78,
+            "hostname": "INFORMACAST",
+            "ip": "10.1.32.240",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 79,
+            "hostname": "ITEC-VEN-JMP01",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 80,
+            "hostname": "JD-TESTLINUX2",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 81,
+            "hostname": "JESSE-WIN10",
+            "ip": "10.1.5.11",
+            "os": "Windows 10",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 82,
+            "hostname": "LAPS",
+            "ip": "10.1.32.15",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 83,
+            "hostname": "LYNX",
+            "ip": "10.1.32.131",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 84,
+            "hostname": "MAIL2019",
+            "ip": "10.1.32.141",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 85,
+            "hostname": "MAILR1",
+            "ip": "10.10.10.56",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 86,
+            "hostname": "MAILR2",
+            "ip": "10.10.10.57",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 87,
+            "hostname": "MDC-CIE-1",
+            "ip": "10.1.32.24",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 88,
+            "hostname": "MDC-PROD-01.VS.NIC.EDU",
+            "ip": "10.1.30.81",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 89,
+            "hostname": "MDC-PROD-02.VS.NIC.EDU",
+            "ip": "10.1.30.82",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 90,
+            "hostname": "MDC-PROD-03.VS.NIC.EDU",
+            "ip": "10.1.30.83",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 91,
+            "hostname": "MDC-PROD-04.VS.NIC.EDU",
+            "ip": "10.1.30.84",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 92,
+            "hostname": "MIKROTIK_MDC-RR1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 93,
+            "hostname": "MIKROTIK_SDC-RR1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 95,
+            "hostname": "MN13APP1",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 96,
+            "hostname": "MN13FE1",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 97,
+            "hostname": "MN13FE2",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 98,
+            "hostname": "MN13LB",
+            "ip": "10.10.10.31",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 99,
+            "hostname": "MN13SQL1",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 100,
+            "hostname": "MN13SQL2",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 101,
+            "hostname": "MONITOR",
+            "ip": "Shutdown",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 102,
+            "hostname": "NETAPP",
+            "ip": "10.1.30.202",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 103,
+            "hostname": "NETSYS",
+            "ip": "10.1.5.250",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 104,
+            "hostname": "NICBACKUP",
+            "ip": "10.1.10.50",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 105,
+            "hostname": "NICDC1",
+            "ip": "10.1.10.11",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 106,
+            "hostname": "NICDC4",
+            "ip": "10.1.10.14",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 107,
+            "hostname": "NICDC5",
+            "ip": "10.1.10.15",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 108,
+            "hostname": "NICDCDMZ",
+            "ip": "10.10.10.14",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 109,
+            "hostname": "NICLB",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 110,
+            "hostname": "NICLIC",
+            "ip": "10.1.32.14",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 111,
+            "hostname": "NICNS1",
+            "ip": "10.10.10.11",
+            "os": "Linux",
+            "edr": "23.4.1.4",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 112,
+            "hostname": "NICNS2",
+            "ip": "10.10.10.12",
+            "os": "Linux",
+            "edr": "23.4.1.4",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 113,
+            "hostname": "NICPON",
+            "ip": "10.3.32.12",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 114,
+            "hostname": "NICPONDC",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 115,
+            "hostname": "NICSSL",
+            "ip": "10.1.32.197",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 116,
+            "hostname": "NPS1",
+            "ip": "10.1.32.250",
+            "os": "Windows Server 2016 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 117,
+            "hostname": "NPS-AAA-1",
+            "ip": "10.1.32.235",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 118,
+            "hostname": "NPS-AAA-2",
+            "ip": "10.1.32.236",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 119,
+            "hostname": "NPS-NAC1",
+            "ip": "10.1.32.231",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 120,
+            "hostname": "NPS-NAC2",
+            "ip": "10.1.32.232",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 121,
+            "hostname": "NSDEPOT1",
+            "ip": "10.1.5.21",
+            "os": "Linux",
+            "edr": "23.4.1.4",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 122,
+            "hostname": "NT-VM-TEMPLATE",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 123,
+            "hostname": "NTAADSYNC",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 124,
+            "hostname": "NTADFS1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 125,
+            "hostname": "NTADFS2",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 126,
+            "hostname": "NTADFSPR1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 127,
+            "hostname": "NTADFSSQL",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 128,
+            "hostname": "NTDC1",
+            "ip": "Boneyard",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 129,
+            "hostname": "NTDC2",
+            "ip": "Boneyard",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 130,
+            "hostname": "NTDFS1",
+            "ip": "Boneyard",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 131,
+            "hostname": "NTDFS2",
+            "ip": "Boneyard",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 133,
+            "hostname": "NTLAPS",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 134,
+            "hostname": "NTP.NIC.EDU",
+            "ip": "10.0.1.1",
+            "os": "Linux",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 136,
+            "hostname": "NVR",
+            "ip": "10.1.32.251",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 137,
+            "hostname": "NVR1",
+            "ip": "10.1.32.61",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 138,
+            "hostname": "NVR2",
+            "ip": "10.1.32.62",
+            "os": "Windows Server 2022 Standard",
+            "edr": "Unknown",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 139,
+            "hostname": "NVR3",
+            "ip": "10.1.32.252",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 140,
+            "hostname": "NVRCTE",
+            "ip": "10.9.1.100",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 141,
+            "hostname": "NVRSP",
+            "ip": "10.3.32.50",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 142,
+            "hostname": "OLTP1",
+            "ip": "10.1.32.86",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 143,
+            "hostname": "OLTP2",
+            "ip": "10.1.32.87",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 144,
+            "hostname": "OPENDNS1",
+            "ip": "10.1.10.21",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 145,
+            "hostname": "OPENDNS2",
+            "ip": "10.1.10.22",
+            "os": "Linux Appliance",
+            "edr": "Appliance",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 146,
+            "hostname": "OPENDNSCONNECT",
+            "ip": "10.1.10.20",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 147,
+            "hostname": "OPENSHIFT-TEST-CONTROLPLANE-1",
+            "ip": "10.130.0.2",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 148,
+            "hostname": "OPENSHIFT-TEST-CONTROLPLANE-2",
+            "ip": "10.128.0.2",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 149,
+            "hostname": "OPENSHIFT-TEST-CONTROLPLANE-3",
+            "ip": "10.129.0.2",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 150,
+            "hostname": "OPENSHIFT-TEST-WORKER-1",
+            "ip": "10.131.0.2",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 151,
+            "hostname": "OPENSHIFT-TEST-WORKER-2",
+            "ip": "10.128.2.2",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 152,
+            "hostname": "PANORAMA-ESX-11.1.3",
+            "ip": "10.11.0.110",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 153,
+            "hostname": "PATCHMANAGER",
+            "ip": "10.1.5.235",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Steve Taylor",
+            "status": "online"
+        },
+        {
+            "id": 154,
+            "hostname": "PCMANAGE",
+            "ip": "10.1.32.10",
+            "os": "Windows Server 2016 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Steve Taylor",
+            "status": "online"
+        },
+        {
+            "id": 155,
+            "hostname": "PCOMM",
+            "ip": "10.10.10.48",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 156,
+            "hostname": "PMAN",
+            "ip": "10.1.5.210",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 157,
+            "hostname": "QUICKBOOKS",
+            "ip": "10.1.32.51",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Business Office",
+            "status": "online"
+        },
+        {
+            "id": 158,
+            "hostname": "RANNDY11",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Randall Oens",
+            "status": "offline"
+        },
+        {
+            "id": 159,
+            "hostname": "RANNDY_WIN10",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Randall Oens",
+            "status": "offline"
+        },
+        {
+            "id": 160,
+            "hostname": "RDG",
+            "ip": "10.1.32.100",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 161,
+            "hostname": "RDG1",
+            "ip": "10.1.32.98",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 162,
+            "hostname": "RDG2",
+            "ip": "10.1.32.99",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 163,
+            "hostname": "RDSWEB",
+            "ip": "10.1.32.222",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 164,
+            "hostname": "SAVALET",
+            "ip": "10.1.32.77",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Amy Mayer",
+            "status": "online"
+        },
+        {
+            "id": 165,
+            "hostname": "SDAPP",
+            "ip": "10.1.32.79",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 166,
+            "hostname": "SDC-PROD-01.VS.NIC.EDU",
+            "ip": "10.1.30.71",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 167,
+            "hostname": "SDC-PROD-02.VS.NIC.EDU",
+            "ip": "10.1.30.72",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 168,
+            "hostname": "SDC-PROD-03.VS.NIC.EDU",
+            "ip": "10.1.30.73",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 169,
+            "hostname": "SDC-PROD-04.VS.NIC.EDU",
+            "ip": "10.1.30.74",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 170,
+            "hostname": "SDC-TEST-01.VS.NIC.EDU",
+            "ip": "10.1.30.62",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 171,
+            "hostname": "SDC-TEST-02.VS.NIC.EDU",
+            "ip": "10.1.30.63",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 172,
+            "hostname": "SDC-TPCAP",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Jesse Davison",
+            "status": "offline"
+        },
+        {
+            "id": 173,
+            "hostname": "SECDON",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Don Murphy",
+            "status": "offline"
+        },
+        {
+            "id": 174,
+            "hostname": "SECNESS3",
+            "ip": "10.1.32.249",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 175,
+            "hostname": "SECNESS4",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 176,
+            "hostname": "SECNESS5",
+            "ip": "10.1.32.248",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 177,
+            "hostname": "SECNESS6",
+            "ip": "10.1.5.80",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 178,
+            "hostname": "SECTEN",
+            "ip": "10.1.32.214",
+            "os": "Linux",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 179,
+            "hostname": "SECVARCOL",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 180,
+            "hostname": "SECVARDSP",
+            "ip": "10.1.32.245",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 181,
+            "hostname": "SECVARSAS1",
+            "ip": "10.1.32.237",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 182,
+            "hostname": "SECVARSAS2",
+            "ip": "10.1.32.238",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 183,
+            "hostname": "SECVARSOLR",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 184,
+            "hostname": "SECVARSQL",
+            "ip": "10.1.32.242",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 185,
+            "hostname": "SENSORVIEW",
+            "ip": "10.1.32.184",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Facilities",
+            "status": "online"
+        },
+        {
+            "id": 186,
+            "hostname": "SFTP",
+            "ip": "10.10.10.20",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 187,
+            "hostname": "SITEMASTER",
+            "ip": "10.1.32.190",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Facilities",
+            "status": "online"
+        },
+        {
+            "id": 188,
+            "hostname": "SND-PROD1.VS.NIC.EDU",
+            "ip": "10.3.1.201",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 189,
+            "hostname": "SPSQL-ADMIN",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 190,
+            "hostname": "SQLBACK",
+            "ip": "10.1.32.90",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 191,
+            "hostname": "SQLDEV",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 192,
+            "hostname": "SQLTOOLS",
+            "ip": "10.1.52.94",
+            "os": "Windows Server 2025 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 193,
+            "hostname": "SYSLOG-1",
+            "ip": "10.1.5.211",
+            "os": "Linux",
+            "edr": "23.4.1.4",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 195,
+            "hostname": "TADC01",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 196,
+            "hostname": "TADC02",
+            "ip": "10.10.10.72",
+            "os": "Linux",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 197,
+            "hostname": "TCAMPUSWEB",
+            "ip": "10.1.32.53",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 198,
+            "hostname": "TCLCONNECT",
+            "ip": "10.1.52.37",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 199,
+            "hostname": "TCOLLUI",
+            "ip": "10.1.52.74",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 200,
+            "hostname": "TCROA1",
+            "ip": "169.254.70.253",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 201,
+            "hostname": "TCROAPP",
+            "ip": "10.1.52.135",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 202,
+            "hostname": "TCROSQL1",
+            "ip": "10.1.52.77",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 203,
+            "hostname": "TCROSQL2",
+            "ip": "10.1.52.78",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 204,
+            "hostname": "TESTCOMM",
+            "ip": "10.10.10.47",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 208,
+            "hostname": "TESTWEB",
+            "ip": "10.10.10.17",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 209,
+            "hostname": "TETHOSCON",
+            "ip": "10.1.52.217",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 210,
+            "hostname": "TFISIDM3",
+            "ip": "10.1.52.123",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 211,
+            "hostname": "TFISIDM4",
+            "ip": "10.1.52.124",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 212,
+            "hostname": "TFISPRV3",
+            "ip": "10.1.52.125",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 213,
+            "hostname": "TFISPRV4",
+            "ip": "10.1.52.126",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 214,
+            "hostname": "TFISSQL3",
+            "ip": "10.1.52.127",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 215,
+            "hostname": "TFISSQL4",
+            "ip": "10.1.52.128",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "nan",
+            "status": "online"
+        },
+        {
+            "id": 217,
+            "hostname": "TFS",
+            "ip": "10.1.32.164",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Kami Jenks",
+            "status": "online"
+        },
+        {
+            "id": 218,
+            "hostname": "TIDM",
+            "ip": "10.1.52.111",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 219,
+            "hostname": "TLYNX",
+            "ip": "10.1.52.131",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 220,
+            "hostname": "TMN13APP1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 221,
+            "hostname": "TMN13FE1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 222,
+            "hostname": "TMN13FE2",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 223,
+            "hostname": "TMN13LB",
+            "ip": "10.10.10.30",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 224,
+            "hostname": "TMN13SQL1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 225,
+            "hostname": "TMN13SQL2",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "A&P",
+            "status": "offline"
+        },
+        {
+            "id": 226,
+            "hostname": "TOUCHNET",
+            "ip": "10.10.10.46",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 227,
+            "hostname": "TPBI",
+            "ip": "10.1.52.105",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 228,
+            "hostname": "TSDAPP",
+            "ip": "10.1.52.79",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 229,
+            "hostname": "TSQLARCHIVE",
+            "ip": "10.1.52.183",
+            "os": "Windows Server 2022 Standard",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 230,
+            "hostname": "TTOUCHNET",
+            "ip": "10.10.10.45",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 231,
+            "hostname": "TWEBDEV",
+            "ip": "10.1.52.54",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 232,
+            "hostname": "TWEBSVC",
+            "ip": "10.1.52.42",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 233,
+            "hostname": "TWEBSVC2",
+            "ip": "10.1.52.44",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 234,
+            "hostname": "TWEBSVCFE",
+            "ip": "10.1.52.43",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 237,
+            "hostname": "VAULT",
+            "ip": "10.1.32.200",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 238,
+            "hostname": "VBMC",
+            "ip": "10.1.32.195",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 239,
+            "hostname": "VBP1",
+            "ip": "10.1.32.196",
+            "os": "Windows Server 2019 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 240,
+            "hostname": "VBW",
+            "ip": "10.1.32.193",
+            "os": "Windows Server 2022 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 241,
+            "hostname": "VBWP",
+            "ip": "10.1.32.194",
+            "os": "Windows Server 2016 Standard",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 243,
+            "hostname": "VC-PROD1_8.0",
+            "ip": "10.1.30.100",
+            "os": "Linux Appliance",
+            "edr": "Shutdown",
+            "owner": "Jesse Davison",
+            "status": "online"
+        },
+        {
+            "id": 244,
+            "hostname": "VDI-LAB01-01",
+            "ip": " 10.1.201.89",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 245,
+            "hostname": "VDI-LAB01-02",
+            "ip": " 10.1.201.202",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 246,
+            "hostname": "VDI-LAB01-03",
+            "ip": " 10.1.201.206",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 247,
+            "hostname": "VDI-LAB01-04",
+            "ip": " 10.1.201.203",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 248,
+            "hostname": "VDI-LAB01-05",
+            "ip": " 10.1.201.207",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 249,
+            "hostname": "VDI-LAB01-06",
+            "ip": " 10.1.201.95",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 250,
+            "hostname": "VDI-LAB01-07",
+            "ip": " 10.1.201.182",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 251,
+            "hostname": "VDI-LAB01-08",
+            "ip": " 10.1.201.83",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 252,
+            "hostname": "VDI-LAB01-11",
+            "ip": " 10.1.201.80",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 253,
+            "hostname": "VDI-LAB01-12",
+            "ip": " 10.1.201.192",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 255,
+            "hostname": "VDI-NETSYS-01",
+            "ip": " 10.1.5.85",
+            "os": "nan",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 256,
+            "hostname": "VDI-NETSYS-02",
+            "ip": " 10.1.5.130",
+            "os": "nan",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 257,
+            "hostname": "VDI-NETSYS-03",
+            "ip": " 10.1.5.81",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 258,
+            "hostname": "VDI-NETSYS-04",
+            "ip": " 10.1.5.131",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 259,
+            "hostname": "VDI-NETSYS-05",
+            "ip": " 10.1.5.145",
+            "os": "nan",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 263,
+            "hostname": "VEEAMONE",
+            "ip": "10.1.32.192",
+            "os": "Windows Server 2022 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 264,
+            "hostname": "VHMC",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Randall Oens",
+            "status": "offline"
+        },
+        {
+            "id": 265,
+            "hostname": "WAVE1",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 266,
+            "hostname": "WEBAPPS",
+            "ip": "Boneyard",
+            "os": "Shutdown",
+            "edr": "Boneyard",
+            "owner": "Andreas Burger",
+            "status": "offline"
+        },
+        {
+            "id": 267,
+            "hostname": "WEBMONITOR",
+            "ip": "10.1.32.20",
+            "os": "Windows 11 Enterprise",
+            "edr": "25.1.3.334",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 268,
+            "hostname": "WEBSVC",
+            "ip": "10.1.32.42",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 269,
+            "hostname": "WEBSVC2",
+            "ip": "10.1.32.44",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 270,
+            "hostname": "WEBSVCFE",
+            "ip": "10.1.32.43",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "A&P",
+            "status": "online"
+        },
+        {
+            "id": 271,
+            "hostname": "WFTNVR",
+            "ip": "10.2.1.51",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 273,
+            "hostname": "WIN10TEST",
+            "ip": "Shutdown",
+            "os": "Shutdown",
+            "edr": "Shutdown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 277,
+            "hostname": "WIN2019TEMPLATE",
+            "ip": "10.1.5.62",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 278,
+            "hostname": "WIN2022TEMPLATE",
+            "ip": "10.1.5.80",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "offline"
+        },
+        {
+            "id": 279,
+            "hostname": "WIN2025TEMPLATE",
+            "ip": "10.1.5.77",
+            "os": "nan",
+            "edr": "Unknown",
+            "owner": "Netsys",
+            "status": "online"
+        },
+        {
+            "id": 281,
+            "hostname": "WINUPDATE",
+            "ip": "10.1.32.75",
+            "os": "Windows Server 2019 Standard",
+            "edr": "25.1.3.334",
+            "owner": "Helpdesk",
+            "status": "online"
+        },
+        {
+            "id": 282,
+            "hostname": "WWW-PRD-002",
+            "ip": "10.1.32.22",
+            "os": "Linux",
+            "edr": "Unknown",
+            "owner": "Garrett Scott",
+            "status": "online"
+        },
+        {
+            "id": 283,
+            "hostname": "XNIC",
+            "ip": "192.168.0.10",
+            "os": "Windows 11",
+            "edr": "Unknown",
+            "owner": "Martin Hewlett",
+            "status": "online"
+        },
+        {
+            "id": 284,
+            "hostname": "Residence Hall",
+            "ip": "10.1.32.251",
+            "os": "Windows Server 2022 Standard",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 285,
+            "hostname": "NVR1",
+            "ip": "10.1.32.61",
+            "os": "Windows Server 2022 Standard",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 286,
+            "hostname": "NVR2",
+            "ip": "10.1.32.62",
+            "os": "Windows Server 2022 Standard",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 287,
+            "hostname": "HS HardingCenter",
+            "ip": "10.101.10.100",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 288,
+            "hostname": "Molstead Testing Center",
+            "ip": "10.1.32.252",
+            "os": "Windows Server 2022 Standard",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 289,
+            "hostname": "Sandpoint",
+            "ip": "10.3.32.50",
+            "os": "Windows 11",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 290,
+            "hostname": "HS CELC",
+            "ip": "10.103.10.9",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 291,
+            "hostname": "Workforce - Testing Center",
+            "ip": "10.2.32.101",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 292,
+            "hostname": "HS Post Falls",
+            "ip": "10.103.2.10",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 293,
+            "hostname": "HS Bonners Ferry",
+            "ip": "10.103.42.101",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 294,
+            "hostname": "HS St.Maries",
+            "ip": "10.1.5.142",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 295,
+            "hostname": "HS Lakeland",
+            "ip": "10.103.18.215",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 296,
+            "hostname": "HS Sandpoint",
+            "ip": "10.1.5.105",
+            "os": "nan",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 297,
+            "hostname": "HS Shoshone",
+            "ip": "10.103.26.20",
+            "os": "Linux",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 298,
+            "hostname": "Workforce/Kaniksu",
+            "ip": "10.2.1.51",
+            "os": "Windows Server 2022 Standard",
+            "edr": "NVR",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 299,
+            "hostname": "APC-BOS-MDF-ION",
+            "ip": "10.1.9.224",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 300,
+            "hostname": "APC-CHC-MDF-ION",
+            "ip": "10.1.9.239",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 301,
+            "hostname": "APC-DARM-MDF",
+            "ip": "10.1.9.248",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 302,
+            "hostname": "APC-DARM-IDF",
+            "ip": "10.1.9.249",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 303,
+            "hostname": "APC-FSOQ-MDF",
+            "ip": "10.1.9.212",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 304,
+            "hostname": "APC-NETBOTZ200-FSOQ-MDF",
+            "ip": "10.1.9.154",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 305,
+            "hostname": "APC-GYM-MDF-ION",
+            "ip": "10.1.9.233",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 306,
+            "hostname": "APC-GYM-IDF-B-ION",
+            "ip": "10.1.9.234",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 307,
+            "hostname": "APC-HED-MDF-ION",
+            "ip": "10.1.9.215",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 308,
+            "hostname": "APC-HED-IDFB",
+            "ip": "10.1.9.242",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 309,
+            "hostname": "APC-HSB-MDF-ION",
+            "ip": "10.1.9.221",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 310,
+            "hostname": "APC-HSB-IDF",
+            "ip": "10.1.9.222",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 311,
+            "hostname": "APC-HSB-IDF2-ION",
+            "ip": "10.1.9.228",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 312,
+            "hostname": "APC-IAB-MDF-ION",
+            "ip": "10.1.9.213",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 313,
+            "hostname": "APC-HWC-A-MDF",
+            "ip": "10.1.9.227",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 314,
+            "hostname": "APC-HWC-HR-ION",
+            "ip": "10.1.9.245",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 315,
+            "hostname": "APC-HWCC-MAINT-ION",
+            "ip": "10.1.9.244",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 316,
+            "hostname": "APC-HWCD-SEC",
+            "ip": "10.1.9.217",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 317,
+            "hostname": "APC-HWC-IDF-E-LND",
+            "ip": "10.1.9.237",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 318,
+            "hostname": "APC-KIL-MDF-ION",
+            "ip": "10.1.9.218",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 319,
+            "hostname": "APC-KIL-MDF-ION",
+            "ip": "10.1.9.238",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 320,
+            "hostname": "APC-LEE212-3000VA",
+            "ip": "10.1.9.209",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 321,
+            "hostname": "APC-LEE-MDF-ION",
+            "ip": "10.1.9.208",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 322,
+            "hostname": "APC-MCL-MDF",
+            "ip": "10.1.9.240",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 323,
+            "hostname": "APC-MLCC-MDF-20KVA",
+            "ip": "10.1.9.214",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 324,
+            "hostname": "APC-MLCC-IDFB",
+            "ip": "10.1.9.241",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 325,
+            "hostname": "APC-MLCC-IDFD",
+            "ip": "10.1.9.243",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 326,
+            "hostname": "APC-POSTHALL-MDF-ION",
+            "ip": "10.1.9.211",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 327,
+            "hostname": "APC-RESHALL-MDF",
+            "ip": "10.1.9.246",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 328,
+            "hostname": "APC-RESHALL-MDF",
+            "ip": "10.1.9.238",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 329,
+            "hostname": "APC-STR-MDF",
+            "ip": "10.1.9.230",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 330,
+            "hostname": "APC-STR-IDF-B-ION",
+            "ip": "10.1.9.231",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 331,
+            "hostname": "APC-STR-IDF-C-ION",
+            "ip": "10.1.9.232",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 332,
+            "hostname": "APC-SHE-MDF-ION",
+            "ip": "10.1.9.223",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 333,
+            "hostname": "APC-SBT-MDF-20KVA",
+            "ip": "10.1.9.254",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 334,
+            "hostname": "APC-SBT-IDF-ION",
+            "ip": "10.1.9.253",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 335,
+            "hostname": "APC-SUB-MDF",
+            "ip": "10.1.9.220",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 336,
+            "hostname": "APC-SUB-IDF-B-ION",
+            "ip": "10.1.9.219",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 337,
+            "hostname": "APC-SUB-IDF-C-ION",
+            "ip": "10.1.9.210",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 338,
+            "hostname": "APC-SUB-IDF-D",
+            "ip": "10.1.9.216",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 339,
+            "hostname": "APC-WLNS-MDF-ION",
+            "ip": "10.1.9.247",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 340,
+            "hostname": "APC-WINTON-MDF-ION",
+            "ip": "10.1.9.226",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 341,
+            "hostname": "APC-AAOA-MDF-ION",
+            "ip": "10.102.0.100",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 342,
+            "hostname": "APC-CTE-MDF-ION",
+            "ip": "10.9.9.42",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 343,
+            "hostname": "APC-CTE-IDFA-ION",
+            "ip": "10.9.9.43",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 344,
+            "hostname": "APC-CTE-IDFB-ION",
+            "ip": "10.9.9.44",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 345,
+            "hostname": "APC-HDSTRT-MDF-ION",
+            "ip": "10.101.0.200",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 346,
+            "hostname": "APC-POST-ACADEMY-MDF",
+            "ip": "10.8.1.9",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 347,
+            "hostname": "APC-SND-IDF",
+            "ip": "10.3.9.212",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 348,
+            "hostname": "APC-SND-ANX-ION",
+            "ip": "10.3.9.213",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 349,
+            "hostname": "APC-WFT2-MDF",
+            "ip": "10.2.9.13",
+            "os": "APC Smart-UPS (AOS vX.x.x)",
+            "edr": "UPS",
+            "owner": "Don Murphy",
+            "status": "online"
+        },
+        {
+            "id": 350,
+            "hostname": "BL: Children's Center",
+            "ip": "10.1.121.26",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 351,
+            "hostname": "BL: DeArmond North",
+            "ip": "10.1.106.26",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 352,
+            "hostname": "BL: DeArmond West",
+            "ip": "10.1.106.27",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 353,
+            "hostname": "BL: Hedlund",
+            "ip": "10.1.117.22",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 354,
+            "hostname": "BL: Human Resources",
+            "ip": "10.1.123.25",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 355,
+            "hostname": "BL: LHA",
+            "ip": "10.1.108.63",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 356,
+            "hostname": "BL: McLain",
+            "ip": "10.1.115.134",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 357,
+            "hostname": "BL: Meyers",
+            "ip": "10.1.116.42",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 358,
+            "hostname": "BL: Molstead",
+            "ip": "10.1.112.48",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 359,
+            "hostname": "BL: Sherman",
+            "ip": "10.1.120.23",
+            "os": "2N OS (v2.49.x)",
+            "edr": "BlueLight",
+            "owner": "Dennis Noordam",
+            "status": "online"
+        },
+        {
+            "id": 360,
+            "hostname": "ELK8-PROD",
+            "ip": "10.1.115.200",
+            "os": "AIX",
+            "edr": "AIX",
+            "owner": "Carl Rhodes",
+            "status": "online"
+        },
+        {
+            "id": 361,
+            "hostname": "ELK9-TEST",
+            "ip": "10.1.15.210",
+            "os": "AIX",
+            "edr": "AIX",
+            "owner": "Carl Rhodes",
+            "status": "online"
+        },
+        {
+            "id": 362,
+            "hostname": "PROD-F",
+            "ip": "10.1.15.80",
+            "os": "AIX",
+            "edr": "AIX",
+            "owner": "Carl Rhodes",
+            "status": "online"
+        },
+        {
+            "id": 363,
+            "hostname": "TEST-F",
+            "ip": "10.1.15.81",
+            "os": "AIX",
+            "edr": "AIX",
+            "owner": "Carl Rhodes",
+            "status": "online"
+        }
+    ],
+    "error": null
+}

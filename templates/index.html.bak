@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Host Monitor - Audit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background-color: #1a1a1a; 
+            color: #e0e0e0;
+            padding-top: 20px; 
+        }
+        .container-fluid { 
+            background: #2d2d2d; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+            max-width: 95%; 
+        }
+        
+        /* Table overrides for Dark Mode */
+        table.dataTable tbody tr { background-color: #2d2d2d; color: #e0e0e0; }
+        table.dataTable tbody tr:hover { background-color: #383838; }
+        .table-striped>tbody>tr:nth-of-type(odd)>* { box-shadow: none; color: #e0e0e0; background-color: #333; }
+        .table { color: #e0e0e0; border-color: #404040; }
+        
+        .badge-online { background-color: #198754; color: white; padding: 5px 10px; border-radius: 4px; }
+        .badge-offline { background-color: #dc3545; color: white; padding: 5px 10px; border-radius: 4px; }
+        
+        .header_row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .meta-info { text-align: right; font-size: 0.9em; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="header_row">
+        <div>
+            <h2 class="mb-0">🛸 Galactic Host Monitor</h2>
+            <small class="text-muted">Source-of-Truth Audit</small>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <button id="rescanBtn" class="btn btn-primary btn-sm">Rescan Network</button>
+            <div class="meta-info">
+                <div id="host-count">Hosts: 0</div>
+                <div id="last-updated">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <table id="hostTable" class="table table-hover" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>OS</th>
+                <th>EDR Ver</th>
+                <th>Owner</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize DataTables
+        var table = $('#hostTable').DataTable({
+            ajax: {
+                url: '/api',
+                dataSrc: function(json) {
+                    // Update header stats when data arrives
+                    if(json.last_updated) {
+                        $('#last-updated').text('Last Scan: ' + json.last_updated);
+                    }
+                    if(json.hosts) {
+                        $('#host-count').text('Hosts: ' + json.hosts.length);
+                    }
+                    return json.hosts;
+                }
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'hostname' },
+                { data: 'ip' },
+                { data: 'os', defaultContent: "Unknown" },
+                { data: 'edr', defaultContent: "Unknown" },
+                { data: 'owner', defaultContent: "Unknown" },
+                { 
+                    data: 'status',
+                    render: function(data) {
+                        return data === 'online' ? 
+                            '<span class="badge-online">Online</span>' : 
+                            '<span class="badge-offline">OFFLINE</span>';
+                    }
+                }
+            ],
+            pageLength: 25,
+            order: [[6, 'asc']], // Sort by Status (Offline/Online)
+            createdRow: function(row, data, dataIndex) {
+                // Optional: visual styling for rows
+            }
+        });
+
+        // Handle Manual Rescan
+        $('#rescanBtn').click(function() {
+            var btn = $(this);
+            btn.prop('disabled', true).text('Scanning...');
+            
+            fetch('/rescan')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    // Start polling for updates
+                    checkUpdateLoop(btn);
+                })
+                .catch(err => {
+                    console.error(err);
+                    btn.prop('disabled', false).text('Rescan Network');
+                });
+        });
+
+        // Poll for completion (simple version: reload table every 3s until status changes)
+        function checkUpdateLoop(btn) {
+            var checks = 0;
+            var interval = setInterval(function() {
+                table.ajax.reload(null, false); // Reload table data without resetting paging
+                checks++;
+                
+                // Re-enable button after 30 seconds max (or you can add logic to check timestamps)
+                if (checks > 10) { 
+                    clearInterval(interval);
+                    btn.prop('disabled', false).text('Rescan Network');
+                }
+            }, 3000);
+        }
+    });
+</script>
+</body>
+</html>
