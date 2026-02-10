@@ -31,7 +31,7 @@
         .open-link { color: #0dcaf0; font-size: 0.8rem; text-decoration: none; margin-left: 10px; border: 1px solid #444; padding: 2px 8px; border-radius: 4px; }
         .open-link:hover { background: #333; text-decoration: underline; }
         #error-alert { display: none; margin-top: 10px; }
-
+        
         /* DataTables Dark Mode Overrides */
         .dataTables_wrapper .dataTables_length, 
         .dataTables_wrapper .dataTables_filter, 
@@ -39,6 +39,7 @@
         .dataTables_wrapper .dataTables_processing, 
         .dataTables_wrapper .dataTables_paginate {
             color: #e0e0e0 !important;
+            margin-bottom: 10px;
         }
         .dataTables_wrapper .dataTables_length select,
         .dataTables_wrapper .dataTables_filter input {
@@ -54,6 +55,10 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
             color: #777 !important;
         }
+        /* Fix alignment for top info */
+        div.dataTables_wrapper div.dataTables_info {
+            padding-top: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
 <div class="container-fluid">
     <div class="header_row">
         <div>
-            <h2 class="mb-0">🛸 Galactic Host Monitor <small style="font-size: 0.5em; color: #6c757d;">v0.0.85</small></h2>
+            <h2 class="mb-0">🛸 Galactic Host Monitor <small style="font-size: 0.5em; color: #6c757d;">v0.0.93</small></h2>
             <div class="subtitle">
                 <span>Audit: </span>
                 <select id="file-select" class="form-select form-select-sm" style="width: auto; display: inline-block;">
@@ -69,32 +74,39 @@
                     <option value="1938345796772">Aug 2025 Audit</option>
                 </select>
                 <a id="open-link" href="#" target="_blank" class="open-link">Open Source File</a>
+                <a href="https://galacticbacon.nic.edu/vm-gap-dashboard/" target="_blank" class="open-link" style="color: #ffc107; border-color: #ffc107;">S1 Install Gap Analysis</a>
+                <a href="https://galacticbacon.nic.edu/vm-govc/" target="_blank" class="open-link" style="color: #20c997; border-color: #20c997;">Govc VM Inventory</a>
             </div>
             <div id="error-alert" class="alert alert-danger py-1 px-3 mt-2" style="font-size: 0.85rem;"></div>
         </div>
         <div class="d-flex gap-2">
+            <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardSection">Toggle Charts</button>
             <button id="authBtn" class="btn btn-outline-info btn-sm">Service Account Email</button>
             <button id="rescanBtn" class="btn btn-galactic btn-sm">Rescan Source-of-Truth</button>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-2">
-            <div class="card-custom h-100 d-flex flex-column justify-content-center">
-                <div class="kpi-card"><div class="kpi-value" id="kpi-total">0</div><div class="kpi-label">Total Assets</div></div>
-                <div class="kpi-card"><div class="kpi-value" id="kpi-online" style="color: #198754;">0</div><div class="kpi-label">Online</div></div>
-                <div class="kpi-card"><div class="kpi-value" id="kpi-compliance" style="color: #dc3545;">0</div><div class="kpi-label">Missing EDR</div></div>
+    <div class="collapse show" id="dashboardSection">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card-custom h-100 d-flex flex-column justify-content-center">
+                    <div class="kpi-card"><div class="kpi-value" id="kpi-total">0</div><div class="kpi-label">Total Assets</div></div>
+                    <div class="kpi-card"><div class="kpi-value" id="kpi-online" style="color: #198754;">0</div><div class="kpi-label">Online</div></div>
+                    <div class="kpi-card"><div class="kpi-value" id="kpi-compliance" style="color: #dc3545;">0</div><div class="kpi-label">Missing EDR</div></div>
+                </div>
             </div>
+            <div class="col-md-3"><div class="card-custom h-100"><div class="chart-title">Asset Ownership</div><div class="chart-wrapper"><canvas id="ownerChart"></canvas></div></div></div>
+            <div class="col-md-3"><div class="card-custom h-100"><div class="chart-title">EDR Versions</div><div class="chart-wrapper"><canvas id="edrChart"></canvas></div></div></div>
+            <div class="col-md-4"><div class="card-custom h-100"><div class="chart-title">OS Distribution</div><div class="chart-wrapper"><canvas id="osChart"></canvas></div></div></div>
         </div>
-        <div class="col-md-3"><div class="card-custom h-100"><div class="chart-title">Asset Ownership</div><div class="chart-wrapper"><canvas id="ownerChart"></canvas></div></div></div>
-        <div class="col-md-3"><div class="card-custom h-100"><div class="chart-title">EDR Versions</div><div class="chart-wrapper"><canvas id="edrChart"></canvas></div></div></div>
-        <div class="col-md-4"><div class="card-custom h-100"><div class="chart-title">OS Distribution</div><div class="chart-wrapper"><canvas id="osChart"></canvas></div></div></div>
     </div>
 
     <div class="card-custom">
-        <div class="mb-3">
-            <small id="last-updated" class="me-2">Last Scan: Never</small>
+        <div class="mb-3 d-flex gap-2">
+            <small id="last-updated" class="me-2 align-self-center">Last Scan: Never</small>
             <button id="boneyardBtn" class="btn btn-secondary btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Boneyard Overlay</button>
+            <button id="removeBoneyardBtn" class="btn btn-warning btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Remove Boneyard Artifacts</button>
+            <button id="applianceBtn" class="btn btn-info btn-sm" style="font-size: 0.8rem; padding: 2px 8px; background-color: #0dcaf0; color: #000; border: none;">Appliance Overlay</button>
         </div>
         <table id="hostTable" class="table table-dark table-hover w-100">
             <thead><tr><th>ID</th><th>Hostname</th><th>IP Address</th><th>OS</th><th>EDR</th><th>Owner</th><th>Status</th></tr></thead>
@@ -103,10 +115,28 @@
     </div>
 </div>
 
-<div class="modal fade" id="detailsModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content bg-dark text-light border-secondary">
-    <div class="modal-header"><h5 class="modal-title" id="detailsModalTitle">Details</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
-    <div class="modal-body"><div style="max-height: 500px; overflow-y: auto;"><table class="table table-dark table-striped" id="detailsTable"><thead><tr><th>Name</th><th>IP Address</th><th>OS</th><th>EDR</th><th>Owner</th></tr></thead><tbody></tbody></table></div></div>
-</div></div></div>
+<div class="modal fade" id="detailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-light border-secondary">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalTitle">Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-dark table-striped" id="detailsTable">
+                        <thead><tr><th>Name</th><th>IP Address</th><th>OS</th><th>EDR</th><th>Owner</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-primary btn-sm" id="copyModalBtn">Copy to Clipboard</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -114,6 +144,7 @@
 <script>
     let currentHosts = [];
     let charts = {};
+    let boneyardHidden = false; 
 
     function updateDashboard(hosts) {
         $('#kpi-total').text(hosts.length);
@@ -141,22 +172,36 @@
         draw('osChart', 'bar', aggregate('os'), 'os');
     }
 
+    // Helper to populate modal table
+    function populateModalTable(list) {
+        const tbody = $('#detailsTable tbody').empty();
+        list.forEach(h => tbody.append(`<tr><td>${h.hostname}</td><td>${h.ip}</td><td>${h.os}</td><td>${h.edr}</td><td>${h.owner}</td></tr>`));
+    }
+
     function showDetailsModal(label, field) {
         const filtered = currentHosts.filter(h => (h[field] || "Unknown") === label);
         $('#detailsModalTitle').text(`${field.toUpperCase()}: ${label} (${filtered.length})`);
-        const tbody = $('#detailsTable tbody').empty();
-        filtered.forEach(h => tbody.append(`<tr><td>${h.hostname}</td><td>${h.ip}</td><td>${h.os}</td><td>${h.edr}</td><td>${h.owner}</td></tr>`));
+        populateModalTable(filtered);
         new bootstrap.Modal(document.getElementById('detailsModal')).show();
     }
 
     $(document).ready(function() {
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            if (!boneyardHidden) return true; 
+            const rowText = data.join(' ').toUpperCase();
+            return !rowText.includes('BONEYARD');
+        });
+
         const table = $('#hostTable').DataTable({
-            // Explicitly define the DOM layout: 
-            // 'f' is filter (search bar), 'l' is length, 't' is table, 'i' is info, 'p' is pagination
-            dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+            // Structure:
+            // Top Row: (l)ength and (i)nfo together on Left | (f)ilter on Right
+            // Middle: (t)able
+            // Bottom: (i)nfo on Left | (p)agination on Right
+            dom: '<"row"<"col-sm-12 col-md-6 d-flex align-items-center gap-3"li><"col-sm-12 col-md-6"f>>' +
                  '<"row"<"col-sm-12"tr>>' +
                  '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-            searching: true, // Ensure searching is enabled
+            searching: true, 
+            pageLength: 50,
             ajax: { url: 'api', dataSrc: (j) => {
                 if(j.error) $('#error-alert').text(j.error).show(); else $('#error-alert').hide();
                 $('#last-updated').text("Last Scan: " + (j.last_updated || "Never"));
@@ -197,9 +242,43 @@
         $('#boneyardBtn').click(() => {
             const list = currentHosts.filter(h => ((h.ip||"")+(h.edr||"")).toLowerCase().includes('boneyard'));
             $('#detailsModalTitle').text(`BONEYARD ITEMS (${list.length})`);
-            const tbody = $('#detailsTable tbody').empty();
-            list.forEach(h => tbody.append(`<tr><td>${h.hostname}</td><td>${h.ip}</td><td>${h.os}</td><td>${h.edr}</td><td>${h.owner}</td></tr>`));
+            populateModalTable(list);
             new bootstrap.Modal(document.getElementById('detailsModal')).show();
+        });
+
+        $('#removeBoneyardBtn').click(function() {
+            boneyardHidden = !boneyardHidden;
+            if (boneyardHidden) {
+                $(this).text('Show Boneyard Artifacts').removeClass('btn-warning').addClass('btn-outline-warning');
+            } else {
+                $(this).text('Remove Boneyard Artifacts').removeClass('btn-outline-warning').addClass('btn-warning');
+            }
+            table.draw();
+        });
+
+        $('#applianceBtn').click(() => {
+            const list = currentHosts.filter(h => Object.values(h).join(' ').toLowerCase().includes('appliance'));
+            $('#detailsModalTitle').text(`APPLIANCE ITEMS (${list.length})`);
+            populateModalTable(list);
+            new bootstrap.Modal(document.getElementById('detailsModal')).show();
+        });
+
+        $('#copyModalBtn').click(() => {
+            let text = "";
+            $('#detailsTable thead tr th').each(function(){ text += $(this).text() + "\t"; });
+            text = text.trim() + "\n";
+            $('#detailsTable tbody tr').each(function() {
+                $(this).find('td').each(function() {
+                    text += $(this).text() + "\t";
+                });
+                text = text.trim() + "\n";
+            });
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = $('#copyModalBtn');
+                const originalText = btn.text();
+                btn.text("Copied!").removeClass('btn-primary').addClass('btn-success');
+                setTimeout(() => btn.text(originalText).removeClass('btn-success').addClass('btn-primary'), 2000);
+            });
         });
     });
 </script>
