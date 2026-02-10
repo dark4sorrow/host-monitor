@@ -31,6 +31,29 @@
         .open-link { color: #0dcaf0; font-size: 0.8rem; text-decoration: none; margin-left: 10px; border: 1px solid #444; padding: 2px 8px; border-radius: 4px; }
         .open-link:hover { background: #333; text-decoration: underline; }
         #error-alert { display: none; margin-top: 10px; }
+
+        /* DataTables Dark Mode Overrides */
+        .dataTables_wrapper .dataTables_length, 
+        .dataTables_wrapper .dataTables_filter, 
+        .dataTables_wrapper .dataTables_info, 
+        .dataTables_wrapper .dataTables_processing, 
+        .dataTables_wrapper .dataTables_paginate {
+            color: #e0e0e0 !important;
+        }
+        .dataTables_wrapper .dataTables_length select,
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: #333; 
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            color: #e0e0e0 !important;
+        }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+            color: #777 !important;
+        }
     </style>
 </head>
 <body>
@@ -128,6 +151,12 @@
 
     $(document).ready(function() {
         const table = $('#hostTable').DataTable({
+            // Explicitly define the DOM layout: 
+            // 'f' is filter (search bar), 'l' is length, 't' is table, 'i' is info, 'p' is pagination
+            dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>' +
+                 '<"row"<"col-sm-12"tr>>' +
+                 '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+            searching: true, // Ensure searching is enabled
             ajax: { url: 'api', dataSrc: (j) => {
                 if(j.error) $('#error-alert').text(j.error).show(); else $('#error-alert').hide();
                 $('#last-updated').text("Last Scan: " + (j.last_updated || "Never"));
