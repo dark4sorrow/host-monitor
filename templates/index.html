@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galactic Host Monitor</title>
+    <title>Galactic Source-of-Truth Host Monitor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -17,7 +18,6 @@
         .kpi-value { font-size: 1.8rem; font-weight: bold; color: #fff; }
         .kpi-label { font-size: 0.8rem; color: #ccc; text-transform: uppercase; letter-spacing: 1px; }
         .chart-title { color: #e0e0e0; text-align: center; margin-bottom: 15px; font-weight: 600; font-size: 1.1rem; }
-        #last-updated { color: #e0e0e0; opacity: 0.8; font-size: 0.9rem; }
         table.dataTable tbody tr { background-color: #2d2d2d; color: #e0e0e0; }
         .table { color: #e0e0e0; border-color: #404040; }
         .badge-online { background-color: #198754; color: white; padding: 5px 10px; border-radius: 4px; }
@@ -32,6 +32,11 @@
         .open-link:hover { background: #333; text-decoration: underline; }
         #error-alert { display: none; margin-top: 10px; }
         
+        /* Dropdown Styling */
+        .dropdown-menu-dark { background-color: #333; border-color: #555; }
+        .dropdown-item { color: #e0e0e0; }
+        .dropdown-item:hover { background-color: #444; color: #fff; }
+
         /* DataTables Dark Mode Overrides */
         .dataTables_wrapper .dataTables_length, 
         .dataTables_wrapper .dataTables_filter, 
@@ -55,10 +60,7 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
             color: #777 !important;
         }
-        /* Fix alignment for top info */
-        div.dataTables_wrapper div.dataTables_info {
-            padding-top: 0 !important;
-        }
+        div.dataTables_wrapper div.dataTables_info { padding-top: 0 !important; }
     </style>
 </head>
 <body>
@@ -66,23 +68,40 @@
 <div class="container-fluid">
     <div class="header_row">
         <div>
-            <h2 class="mb-0">🛸 Galactic Host Monitor <small style="font-size: 0.5em; color: #6c757d;">v0.0.93</small></h2>
+            <h2 class="mb-0">🛸 Galactic Source-of-Truth Host Monitor <small style="font-size: 0.5em; color: #6c757d;">v0.0.101</small></h2>
             <div class="subtitle">
                 <span>Audit: </span>
                 <select id="file-select" class="form-select form-select-sm" style="width: auto; display: inline-block;">
                     <option value="2026233839344">Nov 2025 Audit</option>
                     <option value="1938345796772">Aug 2025 Audit</option>
                 </select>
-                <a id="open-link" href="#" target="_blank" class="open-link">Open Source File</a>
-                <a href="https://galacticbacon.nic.edu/vm-gap-dashboard/" target="_blank" class="open-link" style="color: #ffc107; border-color: #ffc107;">S1 Install Gap Analysis</a>
-                <a href="https://galacticbacon.nic.edu/vm-govc/" target="_blank" class="open-link" style="color: #20c997; border-color: #20c997;">Govc VM Inventory</a>
+                <a id="open-link" href="#" target="_blank" class="open-link">Open Box Source-of-Truth File</a>
+                
+                <div class="dropdown d-inline-block ms-2">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="linksDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-bars me-1"></i> Associated Page Links
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="linksDropdown">
+                        <li><a class="dropdown-item" href="https://galacticbacon.nic.edu/veeam/" target="_blank"><i class="fa-solid fa-database me-2 text-info"></i>Veeam Audit</a></li>
+                        <li><a class="dropdown-item" href="https://galacticbacon.nic.edu/s1-dashboard/" target="_blank"><i class="fa-solid fa-shield-halved me-2 text-danger"></i>SentinelOne Health</a></li>
+                        <li><hr class="dropdown-divider bg-secondary"></li>
+                        <li><a class="dropdown-item" href="https://galacticbacon.nic.edu/vm-gap-dashboard/" target="_blank"><i class="fa-solid fa-magnifying-glass me-2 text-warning"></i>S1 Install Gap Analysis</a></li>
+                        <li><a class="dropdown-item" href="https://galacticbacon.nic.edu/vm-govc/" target="_blank"><i class="fa-solid fa-server me-2 text-success"></i>Govc VM Inventory</a></li>
+                    </ul>
+                </div>
+
             </div>
             <div id="error-alert" class="alert alert-danger py-1 px-3 mt-2" style="font-size: 0.85rem;"></div>
         </div>
-        <div class="d-flex gap-2">
+        
+        <div class="d-flex gap-2 align-items-start">
             <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#dashboardSection">Toggle Charts</button>
             <button id="authBtn" class="btn btn-outline-info btn-sm">Service Account Email</button>
-            <button id="rescanBtn" class="btn btn-galactic btn-sm">Rescan Source-of-Truth</button>
+            
+            <div class="d-flex flex-column align-items-end">
+                <button id="rescanBtn" class="btn btn-galactic btn-sm">Rescan Source-of-Truth</button>
+                <small id="last-updated" style="font-size: 0.75rem; color: #adb5bd; margin-top: 4px;">Last Scan: Never</small>
+            </div>
         </div>
     </div>
 
@@ -103,11 +122,12 @@
 
     <div class="card-custom">
         <div class="mb-3 d-flex gap-2">
-            <small id="last-updated" class="me-2 align-self-center">Last Scan: Never</small>
             <button id="boneyardBtn" class="btn btn-secondary btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Boneyard Overlay</button>
-            <button id="removeBoneyardBtn" class="btn btn-warning btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Remove Boneyard Artifacts</button>
             <button id="applianceBtn" class="btn btn-info btn-sm" style="font-size: 0.8rem; padding: 2px 8px; background-color: #0dcaf0; color: #000; border: none;">Appliance Overlay</button>
-        </div>
+            <button id="shutdownBtn" class="btn btn-primary btn-sm" style="font-size: 0.8rem; padding: 2px 8px; background-color: #6f42c1; border-color: #6f42c1;">Shutdown Overlay</button>
+            <button id="removeBoneyardBtn" class="btn btn-warning btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Remove Boneyard Artifacts</button>
+            <button id="removeShutdownBtn" class="btn btn-danger btn-sm" style="font-size: 0.8rem; padding: 2px 8px;">Remove Shutdown Artifacts</button>
+            </div>
         <table id="hostTable" class="table table-dark table-hover w-100">
             <thead><tr><th>ID</th><th>Hostname</th><th>IP Address</th><th>OS</th><th>EDR</th><th>Owner</th><th>Status</th></tr></thead>
             <tbody></tbody>
@@ -145,6 +165,7 @@
     let currentHosts = [];
     let charts = {};
     let boneyardHidden = false; 
+    let shutdownHidden = false; 
 
     function updateDashboard(hosts) {
         $('#kpi-total').text(hosts.length);
@@ -187,16 +208,19 @@
 
     $(document).ready(function() {
         $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-            if (!boneyardHidden) return true; 
             const rowText = data.join(' ').toUpperCase();
-            return !rowText.includes('BONEYARD');
+            
+            if (boneyardHidden && rowText.includes('BONEYARD')) {
+                return false; 
+            }
+            if (shutdownHidden && rowText.includes('SHUTDOWN')) {
+                return false; 
+            }
+
+            return true; 
         });
 
         const table = $('#hostTable').DataTable({
-            // Structure:
-            // Top Row: (l)ength and (i)nfo together on Left | (f)ilter on Right
-            // Middle: (t)able
-            // Bottom: (i)nfo on Left | (p)agination on Right
             dom: '<"row"<"col-sm-12 col-md-6 d-flex align-items-center gap-3"li><"col-sm-12 col-md-6"f>>' +
                  '<"row"<"col-sm-12"tr>>' +
                  '<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
@@ -226,14 +250,17 @@
         });
 
         $('#rescanBtn').click(function() {
-            $(this).prop('disabled', true).text('Scanning...');
+            $(this).prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin me-2"></i>Scanning...');
             $('#error-alert').hide();
             fetch('rescan?file_id=' + $('#file-select').val()).then(() => {
                 let attempts = 0;
                 let interval = setInterval(() => {
                     table.ajax.reload((json) => {
                         attempts++;
-                        if (json.error || attempts > 15) { clearInterval(interval); $('#rescanBtn').prop('disabled', false).text('Rescan Source-of-Truth'); }
+                        if (json.error || attempts > 15) { 
+                            clearInterval(interval); 
+                            $('#rescanBtn').prop('disabled', false).text('Rescan Source-of-Truth'); 
+                        }
                     }, false);
                 }, 3000);
             });
@@ -256,9 +283,27 @@
             table.draw();
         });
 
+        $('#removeShutdownBtn').click(function() {
+            shutdownHidden = !shutdownHidden;
+            if (shutdownHidden) {
+                $(this).text('Show Shutdown Artifacts').removeClass('btn-danger').addClass('btn-outline-danger');
+            } else {
+                $(this).text('Remove Shutdown Artifacts').removeClass('btn-outline-danger').addClass('btn-danger');
+            }
+            table.draw();
+        });
+
         $('#applianceBtn').click(() => {
             const list = currentHosts.filter(h => Object.values(h).join(' ').toLowerCase().includes('appliance'));
             $('#detailsModalTitle').text(`APPLIANCE ITEMS (${list.length})`);
+            populateModalTable(list);
+            new bootstrap.Modal(document.getElementById('detailsModal')).show();
+        });
+
+        // NEW SHUTDOWN BUTTON HANDLER
+        $('#shutdownBtn').click(() => {
+            const list = currentHosts.filter(h => Object.values(h).join(' ').toLowerCase().includes('shutdown'));
+            $('#detailsModalTitle').text(`SHUTDOWN ITEMS (${list.length})`);
             populateModalTable(list);
             new bootstrap.Modal(document.getElementById('detailsModal')).show();
         });

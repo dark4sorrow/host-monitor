@@ -1,5 +1,5 @@
 {
-    "last_updated": "2026-01-21 23:17:21",
+    "last_updated": "2026-02-11 17:17:53",
     "file_id": "2026233839344",
     "filename": "Source-of-Truth-Audit-#2-Nov2025.xlsx",
     "hosts": [
@@ -2287,7 +2287,7 @@
             "os": "nan",
             "edr": "Unknown",
             "owner": "Netsys",
-            "status": "offline"
+            "status": "online"
         },
         {
             "id": 279,
